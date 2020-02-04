@@ -9,23 +9,21 @@ namespace Platzi_ASP_NET_CORE.Controllers
 {
     public class EscuelaController : Controller
     {
+        private EscuelaContext _context;
+
+        public EscuelaController(EscuelaContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            var escuela = new Escuela()
-            {
-                AñoDeCreación = 2005,
-                UniqueId = Guid.NewGuid().ToString(),
-                Nombre = "Platzi",
-                Ciudad = "Rafaela",
-                Pais = "Argentina",
-                Dirección = "Los Colonos 8100",
-                TipoEscuela = TiposEscuela.Secundaria
-
-            };
-
+            var escuela = _context.Escuelas.FirstOrDefault();
             ViewBag.CosaDinamica = "La monja";
             return View(escuela);
 
         }
+
+       
     }
 }

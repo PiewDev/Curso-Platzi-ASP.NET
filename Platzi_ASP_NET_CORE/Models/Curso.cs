@@ -12,6 +12,9 @@ namespace Platzi_ASP_NET_CORE.Models
 
         public string Dirección { get; set; }
 
+        public string EscuelaID { get; set; }
+
+        public Escuela Escuela { get; set; }
 
         public void LimpiarLugar()
         {

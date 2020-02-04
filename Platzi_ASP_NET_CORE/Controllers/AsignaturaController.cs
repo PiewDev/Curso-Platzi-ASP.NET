@@ -9,23 +9,23 @@ namespace Platzi_ASP_NET_CORE.Controllers
 {
     public class AsignaturaController : Controller
     {
+        private EscuelaContext _context;
+
+        public AsignaturaController(EscuelaContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View(new Asignatura { Nombre = "Programacion", UniqueId = Guid.NewGuid().ToString() });
+            return View(_context.Asignaturas.FirstOrDefault());
         }
         public IActionResult MultiAsignatura()
-        {
-            var listaAsignaturas = new List<Asignatura>(){
-                new Asignatura{Nombre="Matemáticas", UniqueId = Guid.NewGuid().ToString()} ,
-                new Asignatura{Nombre="Educación Física", UniqueId = Guid.NewGuid().ToString()},
-                new Asignatura{Nombre="Castellano", UniqueId = Guid.NewGuid().ToString()},
-                new Asignatura{Nombre="Ciencias Naturales", UniqueId = Guid.NewGuid().ToString()},
-                new Asignatura{Nombre="Programacion", UniqueId = Guid.NewGuid().ToString()}
-            };
-
+        {            
             ViewBag.CosaDinamica = "La monja";
-            return View(listaAsignaturas);
+            return View(_context.Asignaturas);
 
         }
     }
+
+
 }
